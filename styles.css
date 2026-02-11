@@ -1,0 +1,79 @@
+
+main {
+    background-color:lightgrey;
+    width: 1000px;
+    margin: 0 auto;
+    height: 400px;
+    border-radius: 10px;
+        background-image: linear-gradient(to bottom, rgb(168, 168, 168), rgb(105, 105, 105)) ;
+}
+
+main p {
+
+    margin-top: 100px;
+    margin: 0 auto;
+    width: 600px;
+    margin-top: 100px;
+    text-align: center;
+}
+
+article {
+    margin: 0 auto;
+    display:flex;
+}
+
+article h2 {
+    margin-top: 100px;
+    margin-left: 210px;
+    font-style: italic;
+}
+
+article ul {
+    margin-left: 100px;
+}
+
+ul li {
+    margin-top: 50px;
+    list-style: none;
+}
+
+header {
+background-image: linear-gradient(to bottom, blue, rgb(17, 0, 43), rgb(139, 0, 26), rgb(0, 0, 0)) ;
+}
+
+header h1 {
+    margin: 0 auto;
+    font-style: italic;
+    color: rgb(0, 255, 0);
+    text-align: center;
+    border: 2px solid greenyellow;
+    border-radius: 10px;
+    background-image: linear-gradient(to right, rgb(0, 19, 48), rgb(0, 98, 217)) ;
+    width: 1000px;
+    height: 100px;
+    text-shadow: 2px 2px 6px rgb(255, 136, 0);
+}
+
+footer {
+    width: 1000px;
+    margin: 0 auto;
+    margin-top: 100px;
+    border-radius: 10px;
+    background-image: linear-gradient(to right, rgb(0, 19, 48), rgb(0, 98, 217)) ;
+
+}
+
+footer p {
+    color:aqua
+}
+
+#Welcome {
+    margin: 0 auto;
+    font-size: 18px;
+    font-style: italic;
+    color: rgb(0, 255, 34);
+    border: 2px solid rgb(82, 31, 0);
+    background-image: linear-gradient(to right, blue, rgb(17, 0, 43), rgb(139, 0, 26), rgb(0, 0, 0));
+}
+
+   
