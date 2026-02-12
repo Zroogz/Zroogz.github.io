@@ -25,3 +25,5 @@ if (isEvening) {
     Welcome.textContent = "Good Evening! Don't work too late!"
 
 }
+
+localStorage.setItem("It's a secret to everybody.", "My favorite Nintendo franchise is Metroid")
