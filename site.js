@@ -23,3 +23,59 @@ localStorage.setItem(
     "It's a secret to everybody.",
     "My favorite Nintendo franchise is Metroid"
 )
+
+// Preload images
+const urls = [
+    'img/image1.png',
+    'img/image2.png',
+    'img/image3.png',
+    'img/image4.png'
+];
+
+urls.forEach(url => {
+    const img = new Image();
+    img.src = url;
+});
+
+// Select the <img> elements inside #carousel
+const images = document.querySelectorAll('#carousel img');
+
+// Track which image set is showing
+let currentImage = 0;
+
+// Update the 3 displayed images
+const showImages = () => {
+    const offset = currentImage % urls.length;
+
+    images.forEach((image, index) => {
+        const imageIndex = (index + offset + urls.length) % urls.length;
+        image.src = urls[imageIndex];
+    });
+};
+
+// Show the first set immediately
+showImages();
+
+// -------------------------------
+// BUTTON CONTROLS
+// -------------------------------
+
+// Previous button
+document.getElementById("prev").addEventListener("click", () => {
+    currentImage--;      // move right
+    showImages();
+});
+
+// Next button
+document.getElementById("next").addEventListener("click", () => {
+    currentImage++;      // move left
+    showImages();
+});
+
+// -------------------------------
+// AUTO‑ADVANCE EVERY 5 SECONDS
+// -------------------------------
+setInterval(() => {
+    currentImage++;
+    showImages();
+}, 5000);
