@@ -1,29 +1,25 @@
 const hours = new Date().getHours() // get the current hour
 
-const isMorning = hours >= 4 && hours < 12 // is it morning?
-const isAfternoon = hours >= 12 && hours < 17 // is it afternoon?
-const isEvening = hours >= 17 || hours < 4 // is it evening?
+const isMorning = hours >= 4 && hours < 12
+const isAfternoon = hours >= 12 && hours < 17
+const isEvening = hours >= 17 || hours < 4
 
-console.log(isAfternoon)
+let timeOfDay = ""
 
-const Welcome = document.getElementById('Welcome');
+if (isMorning) timeOfDay = "morning"
+if (isAfternoon) timeOfDay = "afternoon"
+if (isEvening) timeOfDay = "evening"
 
-if (isMorning) {
-    
-    Welcome.textContent = "Good Morning! Time to get going!"
-
+const messages = {
+    morning: "Good Morning! Time to get going!",
+    afternoon: "Good Afternoon! Take a break!",
+    evening: "Good Evening! Don't work too late!"
 }
 
-if (isAfternoon) {
-    
-    Welcome.textContent = "Good Afternoon! Take a break!"
+document.getElementById("welcomeText").textContent = messages[timeOfDay]
 
-}
 
-if (isEvening) {
-    
-    Welcome.textContent = "Good Evening! Don't work too late!"
-
-}
-
-localStorage.setItem("It's a secret to everybody.", "My favorite Nintendo franchise is Metroid")
+localStorage.setItem(
+    "It's a secret to everybody.",
+    "My favorite Nintendo franchise is Metroid"
+)
