@@ -79,3 +79,43 @@ setInterval(() => {
     currentImage++;
     showImages();
 }, 5000);
+
+// -----------------------------
+// Assignment 6: To‑Do List
+// -----------------------------
+
+// Load existing todos from localStorage
+let todos = JSON.parse(localStorage.getItem('todo-list')) || [];
+
+// Render function (required arrow function)
+const renderTodos = () => {
+  const todoList = document.querySelector('.todo-list');
+  todoList.innerHTML = '';
+
+  todos.forEach(todo => {
+    const li = document.createElement('li');
+    li.textContent = todo.text;
+    todoList.append(li);
+  });
+};
+
+// Run on page load
+renderTodos();
+
+// Add button listener
+document.getElementById('add-btn').addEventListener('click', () => {
+  const input = document.getElementById('new-todo');
+
+  if (input.value.trim() === '') return;
+
+  todos.push({
+    text: input.value,
+    completed: false
+  });
+
+  localStorage.setItem('todo-list', JSON.stringify(todos));
+
+  input.value = '';
+
+  renderTodos();
+});
