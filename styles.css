@@ -416,3 +416,29 @@ button:hover {
   border: none;
   cursor: pointer;
 }
+
+/* POKEMON IMAGE */
+#pokemon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+#pokemon img {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 8px #00ff88) drop-shadow(0 0 15px #0aaeff);
+}
+
+#pokemon-prompt {
+  text-align: center;
+  font-family: 'Audiowide', sans-serif;
+  font-size: 1.5rem;
+  color: #00eaff;
+  text-shadow: 0 0 8px #00eaff, 0 0 16px #ff006e;
+  margin-top: -20px;
+  margin-bottom: 40px;
+}
