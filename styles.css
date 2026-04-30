@@ -31,8 +31,9 @@ main, header h1, footer, article {
 
 /* MAIN CONTENT */
 main {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
     background: linear-gradient(135deg, rgba(200, 220, 255, 0.12) 0%, rgba(150, 180, 220, 0.08) 100%);
     backdrop-filter: blur(12px) brightness(1.05);
     padding: 40px;
@@ -48,7 +49,7 @@ main h1 {
     width: 500px;
     height: 50px;
     background-color: linear-gradient(135deg, #d9d9d9, #606060, #bfbfbf, #151515, #cccccc);
-
+    grid-column: 1 / -1;
 }
 
 main h3 { 
@@ -66,12 +67,13 @@ main h3 {
     border: 2px solid rgba(0, 234, 255, 0.4);
     box-shadow:
         0 0 8px rgba(0, 234, 255, 0.2);
+    grid-column: 1 / -1;
 }
 
 /* ARTICLE */
 article {
     color: #00ff88;
-    margin: 60px 0 60px 0;
+    margin: 0;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -89,38 +91,20 @@ article {
         inset 0 0 30px rgba(0, 255, 136, 0.1);
     position: relative;
     overflow: hidden;
-    width: 50%;
-    max-width: 500px;
+    grid-column: 1;
+}
+
+article:nth-of-type(2) {
+    grid-column: 2;
+    margin-top: -80px;
+    flex-direction: column;
+    align-items: center;
 }
 
 @keyframes holoShift {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
-}
-
-/* Holographic shimmer overlay */
-article::before {
-    content: "";
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(45deg, 
-        rgba(255, 0, 110, 0.1) 0%, 
-        rgba(0, 245, 255, 0.15) 25%, 
-        rgba(0, 255, 136, 0.1) 50%, 
-        rgba(255, 0, 110, 0.1) 75%, 
-        rgba(0, 245, 255, 0.15) 100%);
-    animation: holoShimmer 4s linear infinite;
-    pointer-events: none;
-    mix-blend-mode: screen;
-}
-
-@keyframes holoShimmer {
-    0% { transform: rotate(0deg) translate(0, 0); }
-    100% { transform: rotate(360deg) translate(10px, 10px); }
 }
 
 article h2 {
@@ -274,6 +258,7 @@ footer p {
     font-size: 2rem;
     color: #00eaff;
     text-shadow: 0 0 6px #00eaff;
+    grid-column: 1 / -1;
 }
 
 #Welcome span {
@@ -301,6 +286,10 @@ footer p {
 
 /* RESPONSIVE */
 @media (max-width: 700px) {
+    main {
+        grid-template-columns: 1fr;
+    }
+
     main h1 {
         width: 90%;
         font-size: 1rem;
@@ -311,10 +300,23 @@ footer p {
         text-align: center;
         width: 100%;
         max-width: 100%;
+        float: none;
     }
 
     article ul {
         margin: 0 auto;
+    }
+
+    #pokemon {
+        float: none;
+        width: 100%;
+        margin-top: 30px;
+    }
+
+    #pokemon-prompt {
+        float: none;
+        width: 100%;
+        margin-bottom: 30px;
     }
 }
 
@@ -347,6 +349,7 @@ footer p {
     justify-content: center;
     gap: 20px;
     margin-top: 40px;
+    grid-column: 1 / -1;
 }
 #carousel img {
     width: auto;
@@ -381,10 +384,13 @@ button:hover {
     gap: 40px;
     margin-top: 20px;
     width: 100%;
+    grid-column: 1 / -1;
 }
 
 #todo-section {
   margin-top: 40px;
+  clear: both;
+  grid-column: 1 / -1;
 }
 
 .todo-list {
@@ -422,8 +428,7 @@ button:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 40px;
-  margin-bottom: 40px;
+  margin: 0;
 }
 
 #pokemon img {
@@ -439,6 +444,124 @@ button:hover {
   font-size: 1.5rem;
   color: #00eaff;
   text-shadow: 0 0 8px #00eaff, 0 0 16px #ff006e;
-  margin-top: -20px;
-  margin-bottom: 40px;
+  margin: 0;
+}
+
+/* FORTUNE COOKIE SECTION */
+#fortune-section {
+  margin-top: 40px;
+  text-align: center;
+  padding: 30px;
+  background: linear-gradient(135deg, rgba(0, 255, 168, 0.05) 0%, rgba(255, 0, 110, 0.05) 100%);
+  border-radius: 12px;
+  border: 2px solid rgba(0, 255, 168, 0.3);
+  box-shadow: 
+    0 0 15px rgba(0, 255, 168, 0.2),
+    inset 0 0 20px rgba(0, 255, 168, 0.05);
+  grid-column: 1 / -1;
+}
+
+#fortune-section h2 {
+  margin-top: 0;
+  font-style: italic;
+  font-size: 1.6rem;
+  background: linear-gradient(90deg, #ff006e, #00ff88, #00f5ff, #ff006e);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: holoText 3s ease infinite;
+  text-shadow: 0 0 10px rgba(255, 0, 110, 0.5);
+}
+
+#fortune-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px 0;
+  gap: 20px;
+}
+
+.cookie {
+  font-size: 6rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  filter: drop-shadow(0 0 10px #00ff88) drop-shadow(0 0 20px #00f5ff);
+}
+
+.cookie:hover {
+  transform: scale(1.1) rotateZ(5deg);
+}
+
+.cookie.cracking {
+  animation: cookieCrack 0.6s ease-in-out;
+  filter: drop-shadow(0 0 15px #ff006e) drop-shadow(0 0 30px #00f5ff);
+}
+
+@keyframes cookieCrack {
+  0% { 
+    transform: rotateZ(0deg) scale(1);
+  }
+  25% { 
+    transform: rotateZ(-5deg) scale(0.95);
+  }
+  50% { 
+    transform: rotateZ(10deg) scale(0.9);
+  }
+  75% { 
+    transform: rotateZ(-8deg) scale(0.95);
+  }
+  100% { 
+    transform: rotateZ(0deg) scale(1);
+  }
+}
+
+#fortune-text {
+  font-size: 1.3rem;
+  color: #00ff88;
+  text-shadow: 0 0 8px #00ff88, 0 0 16px #ff006e;
+  font-style: italic;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Audiowide', sans-serif;
+  max-width: 500px;
+}
+
+#get-fortune-btn {
+  padding: 14px 35px;
+  border-radius: 10px;
+  border: 2px solid #00ff88;
+  background: rgba(0, 255, 136, 0.1);
+  color: #00ff88;
+  font-size: 1.1rem;
+  font-family: 'Audiowide', sans-serif;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 
+    0 0 10px rgba(0, 255, 136, 0.3),
+    inset 0 0 10px rgba(0, 255, 136, 0.1);
+  text-shadow: 0 0 6px #00ff88;
+}
+
+#get-fortune-btn:hover {
+  background: rgba(0, 255, 136, 0.2);
+  transform: translateY(-3px);
+  box-shadow: 
+    0 0 20px rgba(0, 255, 136, 0.5),
+    0 0 30px rgba(255, 0, 110, 0.3),
+    inset 0 0 15px rgba(0, 255, 136, 0.2);
+  color: #00eaff;
+  border-color: #00eaff;
+  text-shadow: 0 0 8px #00eaff;
+}
+
+#get-fortune-btn:active {
+  transform: translateY(-1px);
+  box-shadow: 
+    0 0 15px rgba(0, 255, 136, 0.4),
+    inset 0 0 20px rgba(0, 255, 136, 0.15);
 }

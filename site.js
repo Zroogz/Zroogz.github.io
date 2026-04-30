@@ -76,3 +76,43 @@ document.getElementById('add-btn').addEventListener('click', () => {
   const p = await (await fetch(`https://pokeapi.co/api/v2/pokemon/${Math.random()*150|0}`)).json()
   document.getElementById('pokemon').append(Object.assign(new Image(), {src: p.sprites.front_default}))
 })()
+
+
+// -----------------------------
+// Assignment 8: Custom Module
+// -----------------------------
+
+// Fetch fortunes from JSON file
+let fortunes = [];
+fetch('./fortunes.json')
+  .then(response => response.json())
+  .then(data => {
+    fortunes = data;
+  })
+  .catch(error => console.error('Error loading fortunes:', error));
+
+const getFortune = () => {
+  if (fortunes.length === 0) return 'Loading fortunes...';
+  return fortunes[Math.floor(Math.random() * fortunes.length)];
+};
+
+// Log a fortune on page load
+console.log(getFortune());
+
+// -----------------------------
+// Fortune Cookie Randomizer
+// -----------------------------
+
+document.getElementById('get-fortune-btn').addEventListener('click', () => {
+  const fortuneText = document.getElementById('fortune-text');
+  const cookie = document.getElementById('fortune-cookie');
+  
+  // Add animation class
+  cookie.classList.add('cracking');
+  
+  // Get a new fortune after animation
+  setTimeout(() => {
+    fortuneText.textContent = getFortune();
+    cookie.classList.remove('cracking');
+  }, 600);
+});
