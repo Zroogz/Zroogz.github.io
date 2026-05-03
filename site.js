@@ -82,22 +82,61 @@ document.getElementById('add-btn').addEventListener('click', () => {
 // Assignment 8: Custom Module
 // -----------------------------
 
-// Fetch fortunes from JSON file
-let fortunes = [];
-fetch('./fortunes.json')
-  .then(response => response.json())
-  .then(data => {
-    fortunes = data;
-  })
-  .catch(error => console.error('Error loading fortunes:', error));
-
-const getFortune = () => {
-  if (fortunes.length === 0) return 'Loading fortunes...';
-  return fortunes[Math.floor(Math.random() * fortunes.length)];
+// Fetch joke from Express API
+const getJoke = async () => {
+  try {
+    const response = await fetch('/api/joke');
+    const data = await response.json();
+    return data.joke;
+  } catch (error) {
+    console.error('Error loading joke:', error);
+    return 'Could not load joke. Please refresh the page.';
+  }
 };
 
-// Log a fortune on page load
-console.log(getFortune());
+// Display joke on button click
+const jokeButton = document.getElementById('get-joke-btn');
+if (jokeButton) {
+  jokeButton.addEventListener('click', async () => {
+    const jokeText = document.getElementById('joke-text');
+    jokeText.textContent = 'Loading...';
+    const joke = await getJoke();
+    jokeText.textContent = joke;
+  });
+}
+
+// Fetch fortune from Express API
+const getFortune = async () => {
+  try {
+    const response = await fetch('/api/fortune');
+    const data = await response.json();
+    return data.fortune;
+  } catch (error) {
+    console.error('Error loading fortune:', error);
+    return 'Could not load fortune. Please refresh the page.';
+  }
+};
+
+// Display fortune on button click
+const fortuneButton = document.getElementById('get-fortune-btn');
+if (fortuneButton) {
+  fortuneButton.addEventListener('click', async () => {
+    const fortuneText = document.getElementById('fortune-text');
+    fortuneText.textContent = 'Loading...';
+    const fortune = await getFortune();
+    fortuneText.textContent = fortune;
+  });
+}
+
+// Load and display on page load
+window.addEventListener('load', async () => {
+  const jokeText = document.getElementById('joke-text');
+  const fortuneText = document.getElementById('fortune-text');
+  const joke = await getJoke();
+  const fortune = await getFortune();
+  jokeText.textContent = joke;
+  fortuneText.textContent = fortune;
+});
 
 // -----------------------------
 // Fortune Cookie Randomizer
